@@ -34,3 +34,17 @@ model.fit(X_train, y_train, epochs=50, batch_size=32, validation_split=0.2)
 y_pred = model.predict(X_test).round()
 accuracy = accuracy_score(y_test, y_pred)
 print(f'Accuracy: {accuracy:.2f}')
+# Function to provide evidence-based recommendations
+def provide_recommendations(patient_data):
+    patient_data = scaler.transform([patient_data])
+    prediction = model.predict(patient_data).round()[0][0]
+    if prediction == 1:
+        return "Recommend further testing for heart disease."
+    else:
+        return "No immediate concern for heart disease."
+
+# Example usage
+new_patient = [30, 130, 215]
+recommendation = provide_recommendations(new_patient)
+print(recommendation)
+
