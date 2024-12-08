@@ -1,0 +1,15 @@
+# Core libraries
+numpy==1.21.2
+pandas==1.3.3
+scikit-learn==0.24.2
+
+# TensorFlow and Keras for deep learning
+tensorflow==2.6.0
+
+# OpenAI API for generative AI
+openai==0.10.3
+
+# Additional libraries for data preprocessing and evaluation
+scipy==1.7.1
+matplotlib==3.4.3
+seaborn==0.11.2
