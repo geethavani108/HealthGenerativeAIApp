@@ -20,10 +20,6 @@ Model Training
 
 Generative AI Application
 
-Contributing
-
-License
-
 Installation
 Clone the repository:
 
@@ -42,5 +38,6 @@ Install the required packages:
 
 sh
 pip install -r requirements.txt
+
 Usage
 CDS System
