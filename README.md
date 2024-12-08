@@ -1,15 +1,46 @@
-# AthenaHealthAI
 
-athenahealth's AI-powered Clinical Decision Support (CDS) systems help healthcare professionals in several ways like:
+AthenaHealth AI Applications
+Overview
+This repository contains two AI applications for athenahealth:
 
-Accurate Diagnoses: By analyzing vast amounts of patient data, medical literature, and clinical guidelines, AI algorithms can identify patterns and anomalies that might be missed by human clinicians. This helps in making more accurate diagnoses1.
+Clinical Decision Support (CDS) System: Uses a deep learning model to analyze patient data and provide evidence-based recommendations.
 
-Evidence-Based Recommendations: The AI system provides evidence-based treatment recommendations, ensuring that healthcare providers are making decisions backed by the latest research and best practices.
+Generative AI Application: Utilizes OpenAI's GPT-3.5 to generate detailed patient summaries and assist with clinical documentation.
 
-Reducing Human Error: By automating the analysis of complex data, the AI reduces the risk of human error, leading to better patient outcomes.
+Table of Contents
+Installation
 
-Efficiency: AI streamlines the decision-making process, allowing healthcare providers to make quicker and more informed decisions, which is especially crucial in emergency situations.
+Usage
 
-Combining Generative AI and Predictive AI: While Generative AI might not be suitable for direct diagnosis, it can complement other AI models that specialize in predictive analytics. For example:
-Generative AI can help in creating detailed and human-readable patient summaries, educational materials for patients, 
-Predictive AI models, such as deep learning algorithms trained on medical data, can analyze patterns and assist in making accurate diagnoses.
+CDS System
+
+Data Generation
+
+Model Training
+
+Generative AI Application
+
+Contributing
+
+License
+
+Installation
+Clone the repository:
+
+sh
+git clone https://github.com/yourusername/athenahealth-ai-applications.git
+Change to the project directory:
+
+sh
+cd athenahealth-ai-applications
+Create a virtual environment and activate it:
+
+sh
+python -m venv venv
+source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+Install the required packages:
+
+sh
+pip install -r requirements.txt
+Usage
+CDS System
