@@ -1,3 +1,6 @@
+
+#Generative AI Application
+#Utilize OpenAI's GPT-3.5 to generate patient summaries:
 import openai
 
 # Set up your OpenAI API key
