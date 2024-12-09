@@ -1,23 +1,30 @@
-import numpy as np
 import pandas as pd
+import numpy as np
 
-# Generate synthetic data
-np.random.seed(42)
-num_samples = 100
+# Set the number of rows for the dataset
+num_rows = 500
 
-# Create features
-ages = np.random.randint(20, 80, num_samples)
-blood_pressures = np.random.randint(110, 180, num_samples)
-cholesterols = np.random.randint(150, 300, num_samples)
-heart_disease = np.random.randint(0, 2, num_samples)  # 0 = No, 1 = Yes
+# Generate random data for each column
+data = {
+    "Age": np.random.randint(18, 90, size=num_rows),
+    "Sex": np.random.choice(["M", "F"], size=num_rows),
+    "ChestPainType": np.random.choice(["ATA", "NAP", "ASY", "TA"], size=num_rows),
+    "RestingBP": np.random.randint(90, 200, size=num_rows),
+    "Cholesterol": np.random.randint(100, 400, size=num_rows),
+    "FastingBS": np.random.choice([0, 1], size=num_rows),
+    "RestingECG": np.random.choice(["Normal", "ST", "LVH"], size=num_rows),
+    "MaxHR": np.random.randint(60, 202, size=num_rows),
+    "ExerciseAngina": np.random.choice(["Y", "N"], size=num_rows),
+    "Oldpeak": np.random.uniform(0.0, 6.2, size=num_rows).round(1),
+    "ST_Slope": np.random.choice(["Up", "Flat", "Down"], size=num_rows),
+    "HeartDisease": np.random.choice([0, 1], size=num_rows)
+}
 
-# Combine into a DataFrame
-data = pd.DataFrame({
-    'Age': ages,
-    'Blood_Pressure': blood_pressures,
-    'Cholesterol': cholesterols,
-    'Heart_Disease': heart_disease
-})
+# Create a DataFrame from the data
+df = pd.DataFrame(data)
 
-# Display the first few rows
-print(data.head())
+# Display the first few rows of the dataset
+print(df.head())
+
+# Save the dataset to a CSV file
+df.to_csv("heart_failure_prediction_synthetic.csv", index=False)
