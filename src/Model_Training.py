@@ -6,8 +6,9 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score
 
 # Features and target
-X = data[['Age', 'Blood_Pressure', 'Cholesterol']]
-y = data['Heart_Disease']
+# Define features (X) and target variable (y) 
+X = df.drop(columns=["HeartDisease"]) 
+y = df["HeartDisease"]
 
 # Split data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
