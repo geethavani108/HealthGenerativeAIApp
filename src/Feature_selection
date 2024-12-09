@@ -1,0 +1,77 @@
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Load the dataset
+df = pd.read_csv("heart_failure_prediction_synthetic.csv")
+
+# Calculate the correlation matrix
+corr_matrix = df.corr()
+
+# Plot the heatmap
+plt.figure(figsize=(12, 8))
+sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt='.2f')
+plt.title('Correlation Matrix')
+plt.show()
+
+#Recursive Feature Elimination (RFE)
+--------------------------------------
+#Use RFE with a model to recursively remove the least important features.
+
+# Identify highly correlated features with the target variable
+correlation_threshold = 0.1  # You can adjust this threshold
+relevant_features = corr_matrix.index[abs(corr_matrix["HeartDisease"]) > correlation_threshold].tolist()
+print("Relevant features based on correlation with HeartDisease:", relevant_features)
+
+#2. Recursive Feature Elimination (RFE)
+----------------------------------
+#Use RFE with a model to recursively remove the least important features.
+from sklearn.feature_selection import RFE
+from sklearn.ensemble import RandomForestClassifier
+
+# Define the model
+model = RandomForestClassifier(random_state=42)
+
+# Define RFE
+rfe = RFE(estimator=model, n_features_to_select=10)  # Adjust the number of features to select
+
+# Fit RFE
+rfe.fit(X_train, y_train)
+
+# Get selected features
+selected_features = X_train.columns[rfe.support_].tolist()
+print("Selected features:", selected_features)
+
+#3. Feature Importance with RandomForest
+---------------------------------
+#Use a RandomForest classifier to compute feature importance scores.
+#from sklearn.ensemble import RandomForestClassifier
+
+# Define the model
+model = RandomForestClassifier(random_state=42)
+
+# Fit the model
+model.fit(X_train, y_train)
+
+# Get feature importances
+importances = model.feature_importances_
+
+# Create a DataFrame for feature importances
+feature_importances = pd.DataFrame({
+    'Feature': X_train.columns,
+    'Importance': importances
+})
+
+# Sort the DataFrame by importance
+feature_importances = feature_importances.sort_values(by='Importance', ascending=False)
+print("Feature importances:")
+print(feature_importances)
+
+
+
+#Summary of Selected Features
+#Use any of these methods to identify and select the most relevant features for your model. Here’s a summary of the process:
+#Correlation Matrix: Identify features correlated with the target variable.
+#RFE: Use Recursive Feature Elimination with a model to select features.
+#Feature Importance: Use feature importance scores from a RandomForest model.
