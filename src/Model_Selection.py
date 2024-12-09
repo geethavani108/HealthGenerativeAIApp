@@ -81,3 +81,15 @@ Purpose: To train each model on the entire training dataset and evaluate its per
 
 How It Works: Each model is trained using the fit method, predictions are made using the predict method, and the model's performance is evaluated using metrics like accuracy, confusion matrix, and classification report.
 */
+/*
+    Loading the Dataset: The dataset is loaded from a CSV file.
+
+Encoding Categorical Variables: Categorical variables are encoded into numerical values.
+
+Splitting the Data: The data is split into training and testing sets.
+
+Initializing Models: Various classification models are initialized, including Logistic Regression, Random Forest, Gradient Boosting, Support Vector Machine, and K-Nearest Neighbors.
+
+Cross-Validation: Each model is evaluated using cross-validation to compare their performance.
+
+Training and Evaluation: Each model is trained on the training data and evaluated on the test data. The accuracy, confusion matrix, and classification report are printed for each model.*/
