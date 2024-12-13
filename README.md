@@ -1,7 +1,7 @@
 
 HealthGenerativeAI Applications
 Overview
-This repository contains two AI applications for athenahealth:
+This repository contains two AI applications for XXXXhealth:
 
 Clinical Decision Support (CDS) System: Uses a deep learning model to analyze patient data and provide evidence-based recommendations.
 
