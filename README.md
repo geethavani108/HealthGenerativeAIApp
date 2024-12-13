@@ -1,5 +1,5 @@
 
-AthenaHealth AI Applications
+HealthGenerativeAI Applications
 Overview
 This repository contains two AI applications for athenahealth:
 
