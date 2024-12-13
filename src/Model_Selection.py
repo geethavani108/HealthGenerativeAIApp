@@ -1,22 +1,32 @@
 #Choose a machine learning model that is appropriate for your problem.
-C#ommon models for binary classification problems like heart disease prediction include:
+#Common models for binary classification problems like heart disease prediction include:
 
 # Load the data
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
 # Load the dataset
-df = pd.read_csv("heart_failure_prediction_synthetic.csv")
+df = pd.read_csv("../tmp/heart_failure_prediction.csv")
 
 # Encode categorical variables
 categorical_columns = df.select_dtypes(include=["object"]).columns
 for column in categorical_columns:
     df[column] = pd.Categorical(df[column]).codes
 
+#X=df['Age', 'ChestPainType', 'RestingBP', 'Cholesterol', 'MaxHR', 'Oldpeak', 'Age_Cholesterol_Ratio']
 # Define features and target variable
-X = df.drop(columns=["HeartDisease"])
+X = df.drop(columns=['RestingECG', 'FastingBS','Sex','ExerciseAngina','HeartDisease'])
 y = df["HeartDisease"]
+df.to_csv("../tmp/Heart_predict_clean.csv")
+#Scale numerical features to a similar range:
+from sklearn.preprocessing import StandardScaler
 
+# Identify numerical features
+numerical_columns = df.select_dtypes(include=["int64", "float64"]).columns
+numerical_columns = numerical_columns.drop('HeartDisease')
+print(numerical_columns)
+scaler = StandardScaler()
+df[numerical_columns] = scaler.fit_transform(df[numerical_columns])
 # Split the data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
@@ -66,8 +76,8 @@ for name, model in models.items():
     print(f"  Confusion Matrix:\n{confusion_matrix(y_test, y_pred)}")
     print(f"  Classification Report:\n{classification_report(y_test, y_pred)}")
     print()
-
-/*Load the Data: The dataset is loaded, and categorical variables are encoded. The data is then split into training and testing sets.
+"""
+Load the Data: The dataset is loaded, and categorical variables are encoded. The data is then split into training and testing sets.
 
 Cross-Validation Accuracy:
 
@@ -80,8 +90,6 @@ Train and Evaluate Each Model:
 Purpose: To train each model on the entire training dataset and evaluate its performance on the test dataset.
 
 How It Works: Each model is trained using the fit method, predictions are made using the predict method, and the model's performance is evaluated using metrics like accuracy, confusion matrix, and classification report.
-*/
-/*
     Loading the Dataset: The dataset is loaded from a CSV file.
 
 Encoding Categorical Variables: Categorical variables are encoded into numerical values.
@@ -93,3 +101,4 @@ Initializing Models: Various classification models are initialized, including Lo
 Cross-Validation: Each model is evaluated using cross-validation to compare their performance.
 
 Training and Evaluation: Each model is trained on the training data and evaluated on the test data. The accuracy, confusion matrix, and classification report are printed for each model.*/
+"""

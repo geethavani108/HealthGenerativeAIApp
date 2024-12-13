@@ -13,12 +13,10 @@ scaler = joblib.load('scaler.pkl')
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.get_json(force=True)
-    age = data['age']
-    blood_pressure = data['blood_pressure']
-    cholesterol = data['cholesterol']
+    
     
     # Prepare the input data for prediction
-    input_data = np.array([[age, blood_pressure, cholesterol]])
+    input_data = np.array([[Age,Sex,ChestPainType,RestingBP,Cholesterol,FastingBS,MaxHR,ST_Slope]])
     input_data = scaler.transform(input_data)
     
     # Make a prediction
@@ -30,6 +28,15 @@ def predict():
     return jsonify({
         'prediction': result
     })
+
+
+#Function to provide evidence-based recommendations
+def provide_recommendations(patient_data):
+    prediction = model.predict(patient_data).round()[0][0]
+    if prediction == 1:
+        return "Recommend further testing for heart disease."
+    else:
+        return "No immediate concern for heart disease."
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -4,16 +4,20 @@
 import openai
 
 # Set up your OpenAI API key
-openai.api_key = 'YOUR_OPENAI_API_KEY'
+
+openai.api_key = 'your_key'
 
 # Function to generate patient summary
 def generate_patient_summary(patient_data):
     prompt = f"Generate a patient summary for the following data: {patient_data}"
     
-    response = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt=prompt,
-        max_tokens=150
+
+    # Replace 'text-davinci-003' with 'gpt-3.5-turbo-instruct'
+    
+    response = openai.ChatCompletion.create( 
+    model="gpt-3.5-turbo-instruct",
+    prompt="Your prompt here",
+    max_tokens=50
     )
     
     summary = response.choices[0].text.strip()

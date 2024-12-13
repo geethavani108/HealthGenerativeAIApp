@@ -1,8 +1,9 @@
 import logging
+import signal
 from twilio.rest import Client
 
 # Setup logging
-logging.basicConfig(filename='tmp/model_performance.log', level=logging.INFO, format='%(asctime)s - %(message)s')
+logging.basicConfig(filename='../tmp/model_performance.log', level=logging.INFO, format='%(asctime)s - %(message)s')
 
 # Function to log performance metrics
 def log_performance(accuracy, precision, recall, f1):
@@ -27,10 +28,11 @@ def send_sms_alert(message):
 stop_monitoring = False 
 
 def signal_handler(sig, frame): 
-  global stop_monitoring print('Stopping monitoring...') 
+  global stop_monitoring 
+  print('Stopping monitoring...') 
   stop_monitoring = True
   # Register the signal handler 
-signal.signal(signal.SIGINT, signal_handler)
+  signal.signal(signal.SIGINT, signal_handler)
 
 # Periodic Evaluation with Alerts
 import time
@@ -66,5 +68,5 @@ def continuous_monitoring(model, X_val, y_val, interval=60):
 # Simulate continuous monitoring # This will run indefinitely until stopped by a keyboard interrupt (Ctrl+C)
 try: 
       continuous_monitoring(model, X_val, y_val, interval=60) 
-except 
+except: 
       KeyboardInterrupt: print("Monitoring stopped by user.")
